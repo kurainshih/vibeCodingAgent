@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-TW"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>前方路況直向文字交流道介面</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3b82f6",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "surface-dark": "#1e293b",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Sans TC", "Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .writing-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        body { 
+            min-height: 100dvh; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col w-full max-w-md mx-auto shadow-2xl relative">
+<header class="flex items-center justify-between p-4 pt-6 pb-2 z-10 bg-background-light dark:bg-background-dark shrink-0">
+<h2 class="text-xl font-bold leading-tight tracking-tight flex-1">前方路況</h2>
+<div class="flex items-center justify-end">
+<button class="flex items-center justify-center rounded-lg size-10 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">notifications</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col overflow-y-auto no-scrollbar">
+<div class="px-4 pb-4 shrink-0">
+<div class="flex flex-col gap-4">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden bg-slate-900 shadow-lg group border border-slate-200 dark:border-slate-700">
+<div class="absolute inset-0 bg-cover bg-center opacity-90" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuvCJHzSRYPOmdFFQqRJaXcn2nrbpV4auGPyeJf_gE5QlCYA-pJfxx6HAukwJVlRfwrQLhg-yi2mhZds-hSMywJiMXilRJwmNOUtbaiqhc8hh8b5zCeg1EqsT7_ysx0Of_KCtjSEWbfJArhjwDbqlqDWuWwCXvi0d8Gg3ajKi2XiKR9xPy5oEt6tlh9nKc1oLP6IH7cI0OsF_2XGEcoN4IPD75M8NudhG-ii2YCsnuTG5EOySFczmMExIutHF-k4g_PLyF2sLXZJFC");'></div>
+<div class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1.5 shadow-sm">
+<div class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></div>
+                        LIVE
+                    </div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="rounded-full size-12 bg-black/30 backdrop-blur-[2px] flex items-center justify-center border border-white/20 shadow-xl">
+<span class="material-symbols-outlined text-white" style="font-size: 32px;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 pt-10">
+<p class="text-white font-bold text-base tracking-wide shadow-black drop-shadow-md">國道一號 - 林口</p>
+</div>
+</div>
+<div class="relative w-full aspect-video rounded-xl overflow-hidden bg-slate-900 shadow-lg group border border-slate-200 dark:border-slate-700">
+<div class="absolute inset-0 bg-cover bg-center opacity-90" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBS5-Glo9qD0IogoEp7htMxthZBB5Tc3hFXgFAwt_GysDdzrHxvRdeWR3GCxCBJQUQ-Lnx8-ijLCpZ9TP3UsVuFpp01qfYNrk5yjximJFZOe1ptyWs6d1o2o8lRa8DpCXhdUfdAAk7ADKatufZzxSexUsN_EmPew4i35j41jobBLQE-L8lk3CRBqbKAH1puRU7ob0zvjEPqIoPTqeOhVM-nJk7I7X8T13n1e0GR2T8X2RWUartHORd6210aZACxns_lmV8DltlTqu8R");'></div>
+<div class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1.5 shadow-sm">
+<div class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></div>
+                        LIVE
+                    </div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="rounded-full size-12 bg-black/30 backdrop-blur-[2px] flex items-center justify-center border border-white/20 shadow-xl">
+<span class="material-symbols-outlined text-white" style="font-size: 32px;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 pt-10">
+<p class="text-white font-bold text-base tracking-wide shadow-black drop-shadow-md">國道一號 - 五股</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 pb-6 shrink-0">
+<div class="grid grid-cols-3 divide-x divide-slate-200 dark:divide-slate-700 bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+<div class="flex flex-col items-center justify-center py-3 px-1">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">目前速度</span>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-bold text-slate-900 dark:text-white leading-none tracking-tight">85</span>
+<span class="text-[10px] text-slate-400 font-medium">km/h</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center py-3 px-1">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">GPS 訊號</span>
+<div class="flex items-center gap-1.5 text-emerald-500">
+<span class="material-symbols-outlined text-[18px]">satellite_alt</span>
+<span class="text-base font-bold text-slate-900 dark:text-white leading-none">良好</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center py-3 px-1">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">行進方向</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">north</span>
+<span class="text-base font-bold text-slate-900 dark:text-white leading-none">往北</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 pb-3 flex items-center justify-between sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-transparent dark:border-slate-800/50 transition-all">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold tracking-tight">即將經過的交流道</h3>
+<span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full uppercase tracking-wider">Auto-Scroll</span>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-2 px-4 pb-12">
+<div class="flex-none w-[22%] h-48 p-3 rounded-xl bg-white dark:bg-surface-dark shadow-sm border border-slate-200 dark:border-slate-700 active:scale-[0.98] transition-transform flex flex-col items-center justify-between">
+<div class="writing-vertical text-slate-900 dark:text-white text-base font-bold h-2/3 flex items-center justify-center tracking-widest">
+                    台北交流道
+                </div>
+<div class="text-[10px] text-primary font-bold whitespace-nowrap pt-2 border-t border-slate-100 dark:border-slate-800 w-full text-center">
+                    1.2km
+                </div>
+</div>
+<div class="flex-none w-[22%] h-48 p-3 rounded-xl bg-white dark:bg-surface-dark shadow-sm border border-slate-200 dark:border-slate-700 active:scale-[0.98] transition-transform flex flex-col items-center justify-between">
+<div class="writing-vertical text-slate-900 dark:text-white text-base font-bold h-2/3 flex items-center justify-center tracking-widest">
+                    三重出口
+                </div>
+<div class="text-[10px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap pt-2 border-t border-slate-100 dark:border-slate-800 w-full text-center">
+                    3.5km
+                </div>
+</div>
+<div class="flex-none w-[22%] h-48 p-3 rounded-xl bg-white dark:bg-surface-dark shadow-sm border border-slate-200 dark:border-slate-700 active:scale-[0.98] transition-transform flex flex-col items-center justify-between">
+<div class="writing-vertical text-slate-900 dark:text-white text-base font-bold h-2/3 flex items-center justify-center tracking-widest">
+                    圓山匝道
+                </div>
+<div class="text-[10px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap pt-2 border-t border-slate-100 dark:border-slate-800 w-full text-center">
+                    5.0km
+                </div>
+</div>
+<div class="flex-none w-[22%] h-48 p-3 rounded-xl bg-white dark:bg-surface-dark shadow-sm border border-slate-200 dark:border-slate-700 active:scale-[0.98] transition-transform flex flex-col items-center justify-between">
+<div class="writing-vertical text-slate-900 dark:text-white text-base font-bold h-2/3 flex items-center justify-center tracking-widest">
+                    林口一出口
+                </div>
+<div class="text-[10px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap pt-2 border-t border-slate-100 dark:border-slate-800 w-full text-center">
+                    8.2km
+                </div>
+</div>
+<div class="flex-none w-[22%] h-48 p-3 rounded-xl bg-white dark:bg-surface-dark shadow-sm border border-slate-200 dark:border-slate-700 active:scale-[0.98] transition-transform flex flex-col items-center justify-between">
+<div class="writing-vertical text-slate-900 dark:text-white text-base font-bold h-2/3 flex items-center justify-center tracking-widest">
+                    林口二出口
+                </div>
+<div class="text-[10px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap pt-2 border-t border-slate-100 dark:border-slate-800 w-full text-center">
+                    10.5km
+                </div>
+</div>
+<div class="flex-none w-[22%] h-48 p-3 rounded-xl bg-white dark:bg-surface-dark shadow-sm border border-slate-200 dark:border-slate-700 active:scale-[0.98] transition-transform flex flex-col items-center justify-between">
+<div class="writing-vertical text-slate-900 dark:text-white text-base font-bold h-2/3 flex items-center justify-center tracking-widest">
+                    桃園交流道
+                </div>
+<div class="text-[10px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap pt-2 border-t border-slate-100 dark:border-slate-800 w-full text-center">
+                    15.2km
+                </div>
+</div>
+</div>
+</main>
+
+</body></html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-Hant"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>繁體中文即時影像地圖與導覽列</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b6cee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }::-webkit-scrollbar { display: none; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-white overflow-hidden h-screen w-screen relative">
+<div class="absolute inset-0 z-0 bg-[#0f141f] select-none">
+<div class="w-full h-full bg-[#111722] relative overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1F2937_0%,_#111722_100%)] opacity-80" data-alt="Dark abstract map background gradient" data-location="Taiwan"></div>
+<div class="absolute top-0 left-[40%] w-4 h-full bg-[#1e293b] rotate-[15deg]"></div>
+<div class="absolute top-[30%] left-0 w-full h-3 bg-[#1e293b] rotate-[-5deg]"></div>
+<div class="absolute top-[60%] left-0 w-full h-6 bg-[#26334d] rotate-[-15deg] shadow-lg"></div> 
+</div>
+<div class="absolute top-[28%] left-[25%] flex flex-col items-center gap-1 group cursor-pointer hover:z-20">
+<div class="p-2 rounded-full bg-[#1e293b]/90 backdrop-blur-sm text-[#94a3b8] shadow-md border border-[#334155] hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+</div>
+</div>
+<div class="absolute top-[48%] right-[15%] flex flex-col items-center gap-1 group cursor-pointer hover:z-20">
+<div class="p-2 rounded-full bg-[#1e293b]/90 backdrop-blur-sm text-[#94a3b8] shadow-md border border-[#334155] hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+</div>
+</div>
+<div class="absolute bottom-[35%] left-[10%] flex flex-col items-center gap-1 group cursor-pointer hover:z-20">
+<div class="p-2 rounded-full bg-[#1e293b]/90 backdrop-blur-sm text-[#94a3b8] shadow-md border border-[#334155] hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+</div>
+</div>
+<div class="absolute top-[60%] left-[45%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 z-10 cursor-pointer">
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/20 rounded-full animate-ping opacity-75"></div>
+<div class="absolute -inset-4 bg-primary/10 rounded-full animate-pulse"></div>
+<div class="relative p-3.5 rounded-full bg-primary text-white shadow-[0_0_30px_rgba(43,108,238,0.5)] border-[3px] border-white transform scale-110 transition-transform group-hover:scale-125">
+<span class="material-symbols-outlined filled text-[24px]">videocam</span>
+</div>
+</div>
+<div class="px-3 py-1.5 bg-[#101622]/90 backdrop-blur-md rounded-lg text-xs font-semibold border border-[#334155] shadow-xl text-white tracking-wide">
+                國1 • 32.5k
+            </div>
+</div>
+</div>
+<div class="absolute inset-0 pointer-events-none flex flex-col justify-between z-10">
+<div class="pointer-events-auto w-full pt-14 px-4 pb-4 bg-gradient-to-b from-background-dark/95 via-background-dark/50 to-transparent">
+<label class="flex flex-col h-12 w-full shadow-2xl shadow-black/40">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full bg-[#1e293b]/80 backdrop-blur-md border border-[#334155] transition-colors focus-within:bg-[#1e293b] focus-within:border-primary/50">
+<div class="text-[#94a3b8] flex items-center justify-center pl-4 pr-3">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 bg-transparent text-white focus:outline-none placeholder:text-[#64748b] text-base font-normal leading-normal" placeholder="搜尋公路或里程"/>
+<button class="px-4 flex items-center justify-center text-[#94a3b8] hover:text-white transition-colors border-l border-[#334155]/50">
+<span class="material-symbols-outlined">mic</span>
+</button>
+</div>
+</label>
+<div class="flex gap-2 mt-4 overflow-x-auto pb-2 no-scrollbar pl-1">
+<button class="px-4 py-1.5 rounded-full bg-primary text-white text-xs font-bold tracking-wide shadow-lg shadow-primary/20 border border-primary/50 whitespace-nowrap">即時影像</button>
+<button class="px-4 py-1.5 rounded-full bg-[#1e293b]/80 backdrop-blur-md border border-[#334155] text-[#cbd5e1] text-xs font-medium hover:bg-[#283548] transition-colors whitespace-nowrap">測速照相</button>
+<button class="px-4 py-1.5 rounded-full bg-[#1e293b]/80 backdrop-blur-md border border-[#334155] text-[#cbd5e1] text-xs font-medium hover:bg-[#283548] transition-colors whitespace-nowrap">路況擁堵</button>
+<button class="px-4 py-1.5 rounded-full bg-[#1e293b]/80 backdrop-blur-md border border-[#334155] text-[#cbd5e1] text-xs font-medium hover:bg-[#283548] transition-colors whitespace-nowrap">休息站</button>
+</div>
+</div>
+<div class="pointer-events-auto absolute right-4 bottom-[320px] flex flex-col gap-3 items-end">
+<button class="group flex size-11 items-center justify-center rounded-xl bg-[#1e293b]/90 backdrop-blur-md text-white shadow-xl border border-[#334155] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[24px] group-hover:rotate-45 transition-transform duration-500">explore</span>
+</button>
+<button class="flex size-11 items-center justify-center rounded-xl bg-[#1e293b]/90 backdrop-blur-md text-primary shadow-xl border border-[#334155] active:bg-primary active:text-white active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[24px]">my_location</span>
+</button>
+</div>
+<div class="pointer-events-auto w-full z-30 mb-[84px]">
+<div class="bg-[#101622] w-full rounded-t-2xl shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.8)] border-t border-[#1e293b] pb-8 pt-2 relative overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-primary/5 blur-[80px] rounded-full pointer-events-none"></div>
+<div class="flex justify-center w-full pb-5 pt-2 cursor-grab active:cursor-grabbing">
+<div class="h-1 w-10 rounded-full bg-[#334155]"></div>
+</div>
+<div class="px-5 flex flex-col gap-5">
+<div class="flex items-start gap-4">
+<div class="relative w-36 aspect-video rounded-lg overflow-hidden shrink-0 border border-[#334155] bg-gray-900 shadow-lg group cursor-pointer">
+<div class="absolute top-1.5 left-1.5 bg-red-500/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[9px] font-bold text-white z-10 flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span> LIVE
+                            </div>
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" data-alt="Dark highway traffic view at night with car lights streaking" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAekc8nzf205faeKsS95dQq3gSNJkWwg5j8oiteQaPlTyArBQkQiW5vwMwkiYusq3a0p3b4sjEks7n5JW-V28tEVpikQOHtZfaQUrYHf7gaFsMPkzjzs2U3OIWby7INVO_DwaVoToPBqu10D23xk_ZyLWIDW2YE7ZyF6FR9zFUXFfOqCXI3jGEzLN-hYhpUwIMCw-4V-o8OyLaclMQpiFoP6XuA9cdaEiMLUpFQnIHQ9hTqotmkqTndLxikTD9Kbg-njw6ZcI2K30zZ"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-colors">
+<div class="w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-lg transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined filled text-[22px]">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col flex-1 h-full justify-between py-0.5 min-w-0">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="shrink-0 px-1.5 py-px rounded text-[10px] font-bold bg-[#f3f4f6] text-black border border-white">國道1號</span>
+<h2 class="text-white font-display font-bold text-lg leading-tight truncate">桃園路段</h2>
+</div>
+<p class="text-[#94a3b8] text-sm font-normal truncate">北上 - 林口交流道</p>
+</div>
+<div class="flex items-center gap-3 mt-2">
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-[#1e293b] border border-[#334155]">
+<span class="material-symbols-outlined text-[14px] text-green-400">speed</span>
+<span class="text-xs font-mono text-green-400">92 <span class="text-[10px] text-[#64748b]">km/h</span></span>
+</div>
+<div class="flex items-center gap-1 text-[#64748b] text-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>32.5K</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-[1fr_2.5fr] gap-3 pt-1">
+<button class="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#1e293b] border border-[#334155] text-[#cbd5e1] font-semibold text-sm hover:bg-[#283548] hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+<button class="flex items-center justify-center gap-3 h-12 rounded-xl bg-primary text-white font-bold text-sm shadow-[0_4px_20px_rgba(43,108,238,0.3)] border border-primary/50 hover:bg-primary/90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined filled text-[20px]">fullscreen</span>
+                            觀看即時影像
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 w-full z-50 bg-[#101622] border-t border-[#1e293b]">
+<div class="flex items-center justify-around h-[84px] pb-6 px-2">
+<button class="flex flex-col items-center gap-1.5 text-[#94a3b8] hover:text-white transition-colors w-16 group">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-medium tracking-wide">首頁</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-[#94a3b8] hover:text-white transition-colors w-16 group">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">favorite</span>
+<span class="text-[10px] font-medium tracking-wide">最愛</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-primary w-16">
+<span class="material-symbols-outlined filled text-[24px]">map</span>
+<span class="text-[10px] font-bold tracking-wide">地圖</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-[#94a3b8] hover:text-white transition-colors w-16 group">
+<span class="material-symbols-outlined text-[24px] group-hover:rotate-45 transition-transform duration-500">settings</span>
+<span class="text-[10px] font-medium tracking-wide">設定</span>
+</button>
+</div>
+</div>
+
+</body></html>
