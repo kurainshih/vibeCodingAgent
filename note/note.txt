@@ -1,0 +1,147 @@
+### 二、最值得做的 6 個 Skills
+
+Claude Code 官方已經把 Skills 當正式能力來做了：你建立 `SKILL.md` 後，它會成為 Claude 的工具箱一部分，可自動或手動呼叫。
+
+對你這類專案，我最推薦這 6 個：
+
+**1. spring-feature-implementation**
+
+用途：新增功能時，要求 Claude 依照你們專案分層慣例產出
+
+內容可要求它：
+
+- 先列要改哪些層
+- 先找 controller/service/dao 對應位置
+- 優先沿用既有命名與 package
+- 若需新增 DTO / VO / Mapper XML，要保持一致風格
+
+**2. mybatis-query-review**
+
+用途：專門看 MyBatis XML、resultMap、JOIN、索引、排序、分頁穩定性
+
+內容可要求它：
+
+- 先檢查 resultMap 是否對齊欄位 alias
+- 查詢列表必須有穩定排序
+- 分析是否適合加索引、CTE、EXISTS、MATERIALIZED
+- 說明風險，不只給改法
+
+**3. postgres-migration-guard**
+
+用途：幫你寫可重複執行的 PostgreSQL migration
+
+內容可要求它：
+
+- 優先 `DO $$ BEGIN ... END $$;`
+- 優先 `IF NOT EXISTS`
+- 避免不可重跑的 DDL / DML
+- 更新資料前先考慮去重與條件限制
+
+**4. java-code-reviewer**
+
+用途：專門 review Java 程式碼品質
+
+內容可要求它：
+
+- 找出責任混雜
+- 找出過長方法
+- 找出 NPE / transaction / logging / exception handling 問題
+- 產出「問題 + 原因 + 建議改法」
+
+**5. bug-investigator**
+
+用途：你貼 stack trace 或一段流程時，讓 Claude 先走定位流程
+
+內容可要求它：
+
+- 先列可疑層級
+- 先判斷是 Spring / MyBatis / SQL / Thymeleaf / JS 哪一層
+- 不急著改碼，先整理 root cause 假說
+- 最後再提最小修改方案
+
+**6. api-spec-writer**
+
+用途：幫你產出內部 API 規格、Controller JavaDoc、串接說明
+
+內容可要求它：
+
+- 用你習慣的 markdown 標題格式
+- 產出 request / response / 錯誤碼 / 流程圖文字版
+- 保持企業文件口吻
+
+這 6 個夠你用很久了。比起做 20 個 Skills，先把這幾個磨準比較有價值。
+
+---
+
+### 三、再加 3 個 Subagents，效率會很高
+
+Claude Code 現在支援自訂 subagents。每個 subagent 都能有自己的系統提示、工具權限、獨立 context，適合把「探索」「實作」「審查」分開。
+
+我建議你做：
+
+- **Explore**
+    - 只給 Read / Glob / Grep 類工具
+    - 用來看專案結構、追流程、找呼叫鏈
+- **Implement**
+    - 給 Edit / Bash / Read
+    - 用來真正改檔
+- **Reviewer**
+    - 只給 Read
+    - 用來做 code review、SQL review、風險檢查
+
+這樣你就不會每次都讓同一個 agent 又看又改又審，context 會乾淨很多。官方也提到 subagents 可以幫你保留上下文、限制工具、做領域專精。
+
+---
+
+### 四、Hooks 很適合你這種企業專案
+
+Hooks 是在 Claude Code 生命週期特定時間點自動執行的 shell / HTTP / prompt。很適合企業 Java 專案做保護。
+
+我最推薦你做這幾個 hook：
+
+- **Pre-edit 檢查**
+    - 如果要改 `pom.xml`、`application.yml`、DB migration、核心安全檔，先提示風險
+- **Post-edit 格式檢查**
+    - Java 檔被改完後自動跑 formatter 或基本檢查
+    - XML 被改完後驗證格式
+- **Pre-commit / pre-command 提醒**
+    - 若指令包含 `rm -rf`、大範圍 `git reset`、批量刪檔，直接阻擋
+- **SQL 檔保護**
+    - 偵測 migration 檔中是否含 `DROP TABLE`、無 WHERE 的 UPDATE/DELETE，要求再次確認
+
+這類 hook 對你很實用，因為你不是在做 toy project，而是會碰到 DB schema、正式流程、企業規範。
+
+### 五、權限設定要保守一點
+
+Claude Code 的設定支援使用者層、專案層、local 層；而且權限可以用 allow/deny 來管控。對檔案與網路限制，也不是靠 sandbox 一把抓，而是靠 permission rules。
+
+你的情境我建議：
+
+- **平常用 `accept edits`**
+- 少用 `bypass permissions`
+- 在 `.claude/settings.json` 放團隊共用規則
+- 在 `.claude/settings.local.json` 放你個人實驗設定
+- 對危險工具或 subagent 加 deny 規則
+
+官方也提到可以用 `permissions.allow` / `permissions.deny` 控制工具與 subagents。
+
+---
+
+### 六、你其實很適合做幾個固定 slash workflows
+
+Claude Code 的 common workflows 官方本來就鼓勵把探索、除錯、重構、測試、PR 這種日常流程標準化。
+
+對你最適合固定化的 prompt，我會建議至少有：
+
+- **/trace-request-flow**
+    - 從 URL / Controller 一路追到 Service / DAO / SQL / View
+- **/review-mybatis-query**
+    - 分析 XML / resultMap / 索引 / 排序 / explain 重點
+- **/implement-feature**
+    - 按你們三層架構新增功能
+- **/debug-stacktrace**
+    - 丟 exception，先做 root cause 分析
+- **/write-migration**
+    - 產出可重跑 migration 與回滾注意事項
+
+因為你是高頻做相似型任務的人，這種固定 workflow 會很省時間。
